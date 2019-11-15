@@ -1,0 +1,70 @@
+.get_started{
+color:white;
+text-decoration:none;
+}
+.spacing_icon{
+    margin-left:10px;
+    margin-right:20px;
+    cursor:pointer;
+}
+.img-bg{
+    background-image:url("./assets/images/tech-background-image-2.jpg"); 
+    height:100%;
+}
+
+h1:hover{
+    color: #ffc107;
+}
+
+.transbox{
+    background-color: whitesmoke;
+    opacity:0.3;
+    border:1px solid blanchedalmond;
+    width: 149px;
+    height: 94px;
+ 
+}
+.add{
+    padding-top:180px;
+    padding-left: 504px;
+}
+.add-text{
+    color: rgb(100, 59, 233);
+    font-weight: bolder;
+    display: block;
+    font-family: Rekha;
+    font-size: 30px;
+    padding-top:23px;
+}
+.transbox:hover{
+    color:black;
+    background-color:#0fccf1;
+    cursor:pointer;
+   
+    
+}.add-text{
+    color:black;
+}
+
+.edit{
+    padding-top: 180px;
+
+}
+.align{
+    
+    margin-left: 140px;
+}
+.Show{
+    padding-left: 504px;
+    padding-top:20px;
+}
+.Logout{
+    padding-right:504px;
+    padding-top:20px;
+}
+.tab-align{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+

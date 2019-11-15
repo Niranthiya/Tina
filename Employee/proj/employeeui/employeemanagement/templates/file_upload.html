@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title>
+        Employee info
+    </title>
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    <script src="/static/assets/scripts/jquery.min.js"></script>
+    <script src="/static/assets/scripts/popper.min.js"></script>
+    <script src="/static/assets/scripts/bootstrap.min.js"></script>
+    <style>
+        .message {
+            list-style-type: none;
+            background-color: white;
+            padding: 12px;
+            margin-top: 13px;
+            color: mediumblue;
+        }
+
+        .header {
+            color: darkblue;
+        }
+
+        .logo {
+            height: 31px;
+            margin-left: 0px;
+        }
+
+        .logo-wrapper {
+            width: 250px;
+        }
+
+        .main-nav-bar {
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #C0C0C0;
+        }
+
+        .text-info {
+            text-shadow: 2px 2px 4px white;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="logo-wrapper">
+            <a class="navbar-brand" href="/" id="lnk-logo">
+                <img class="logo" src="/static/assets/images/101-512.png">
+            </a>
+        </div>
+        <h4><a class="text-info" style="color:black; margin-left: -205px;">Employee Management</a></h4>
+        <div style="margin-left: 850px;">
+            <a href="/fileupload" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-import"></span> Import
+            </a>
+            <a href="/export_xlsx" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-import"></span> Export
+            </a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style=height:90%>
+            <div class="col-sm-2 bg-light" style="padding: 10px">
+
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/newemployee">New Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/searchemployee">Search Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/showemployee">Show Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employeereports">Employee Reports</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-10">
+                <div style="margin-top: 11px;margin-left: 1px;">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" title="Upload excel file" name="excel_file"
+                            style="border: 1px solid black; padding: 11px;" required="required">
+                        <p>
+                            <button type="submit" class="btn btn-outline-success">Upload</button>
+                            <script>
+                                function sucessmsg() {
+                                    alert("Employee Details Uploaded Successfully");
+                                }
+                            </script>
+                    </form>
+                    {% for row in excel_data %}
+                    {% for cell in row %}
+                    {{ cell }}&nbsp;&nbsp;
+                    {% endfor %}
+                    <br>
+                    {% endfor %}
+
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                            {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+</body>
+
+</html>

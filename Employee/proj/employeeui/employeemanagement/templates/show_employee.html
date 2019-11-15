@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title>
+        Employee info
+    </title>
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+    <script src="/static/assets/scripts/jquery.min.js"></script>
+    <script src="/static/assets/scripts/popper.min.js"></script>
+    <script src="/static/assets/scripts/bootstrap.min.js"></script>
+    <style>
+        .header {
+            color: darkblue;
+        }
+
+        .logo {
+            height: 31px;
+            margin-left: 0px;
+        }
+
+        .logo-wrapper {
+            width: 250px;
+        }
+
+        .main-nav-bar {
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #C0C0C0;
+        }
+
+        .text-info {
+            text-shadow: 2px 2px 4px white;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="logo-wrapper">
+            <a class="navbar-brand" href="/" id="lnk-logo">
+                <img class="logo" src="/static/assets/images/101-512.png">
+            </a>
+        </div>
+        <h4><a class="text-info" style="color:black; margin-left: -205px;">Employee Management</a></h4>
+        <div style="margin-left: 850px;">
+            <a href="/fileupload" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-import"></span> Import
+            </a>
+            <a href="/export_xlsx" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-import"></span> Export
+            </a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style=height:90%>
+            <div class="col-sm-2 bg-light" style="padding: 10px">
+
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/newemployee">New Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/searchemployee">Search Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/showemployee">Show Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employeereports">Employee Reports</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-10">
+
+                <div id="SHOW" style="display:block;">
+                    <h6 class="header"><b>Employee Details</b></h6>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="text-align:center">
+                                <th><b>Id</b></th>
+                                <th style="width:20%"><b>Name</b></th>
+                                <th style="width:20%"><b>Employee_Code</b></th>
+                                <th style="width:30%"><b>Email_id</b></th>
+                                <th style="width:20%"><b>Contact_no</b></th>
+                                <th style="width:10%"><b>Salary</b></th>
+
+                            </tr>
+                        </thead>
+                        {% for user in details %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td><a href="/editemployee/{{user.id}}/">{{user.name}}</a></td>
+                            <td>{{user.employee_code}}</td>
+                            <td>{{user.email_id}}</td>
+                            <td>{{user.contact_no}}</td>
+                            <td>{{user.salary}}</td>
+                            <td class="action">
+                                <a href="/deleteemployee/{{user.id}}/">
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

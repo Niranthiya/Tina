@@ -1,0 +1,141 @@
+<html>
+
+<head>
+    <title>
+        Employee info
+    </title>
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    <script src="/static/assets/scripts/jquery.min.js"></script>
+    <script src="/static/assets/scripts/popper.min.js"></script>
+    <script src="/static/assets/scripts/bootstrap.min.js"></script>
+    <style>
+        .messages {
+            list-style-type: none;
+            background-color: white;
+            padding: 12px;
+            margin-top: 13px;
+            color: mediumblue;
+        }
+
+        .header {
+            color: darkblue;
+        }
+
+        .logo {
+            height: 31px;
+            margin-left: 0px;
+        }
+
+        .logo-wrapper {
+            width: 250px;
+        }
+
+        .main-nav-bar {
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #C0C0C0;
+        }
+
+        .text-info {
+            text-shadow: 2px 2px 4px white;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="logo-wrapper">
+            <a class="navbar-brand" href="/" id="lnk-logo">
+                <img class="logo" src="/static/assets/images/101-512.png">
+            </a>
+        </div>
+        <h4><a class="text-info" style="color:black; margin-left: -205px;">Employee Management</a></h4>
+        <div style="margin-left: 850px;">
+            <a href="/fileupload" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-import"></span> Import
+            </a>
+            <a href="/export_xlsx" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-import"></span> Export
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style=height:90%>
+            <div class="col-sm-2 bg-light" style="padding: 10px">
+
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/newemployee">New Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/searchemployee">Search Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/showemployee">Show Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employeereports">Employee Reports</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-10">
+                <h6 class="header"><b>Update Employee</b></h6>
+
+                <div id="EDIT" style="display:block;">
+                    <form method="POST" action style="width:60vh;">
+                        {% csrf_token %}
+                        <div class="form-group">Id</label>
+                            <input type="text" class="form-control" name="id" readonly value="{{id}}"
+                                placeholder="Enter the id">
+                        </div>
+                        <div class="form-group">
+                            <label for="entername">Name</label>
+                            <input type="text" class="form-control" name="name" readonly value="{{name}}"
+                                placeholder="Enter the name">
+                        </div>
+                        <div class="form-group">
+                            <label for="entercode">Employee Code</label>
+                            <input type="text" class="form-control" name="employee_code" readonly
+                                value="{{employee_code}}" placeholder="Enter the employee code">
+                        </div>
+                        <div class="form-group">
+                            <label for="enteremail-id">Email-ID</label>
+                            <input type="text" class="form-control" name="email_id" value="{{email_id}}"
+                                placeholder="Enter the email id">
+                        </div>
+                        <div class="form-group">
+                            <label for="enterphonenumber">Contact No</label>
+                            <input type="text" class="form-control" name="contact_no" value="{{contact_no}}"
+                                placeholder="Enter the contact no">
+                        </div>
+                        <div class="form-group">
+                            <label for="enterphonenumber">Salary</label>
+                            <input type="text" class="form-control" name="salary" value="{{salary}}"
+                                placeholder="Enter the salary ">
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Update</button>
+                        <script>
+                            function sucessmsg() {
+                                alert("Employee Details Updated Successfully");
+                            }
+                        </script>
+                    </form>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                            {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
